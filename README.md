@@ -20,3 +20,7 @@
    With the code getting instantiated from `index.js`, webpack will try to bundle all the required dependencies of on its own. One can verify this by removing all the imports expect that of the `dist/main.js`.
 
    This proves how webpack can help in bundling all the file into a single file. It take cares of proper and ordered dependency loadings. We don't need to bother how our files are organised. We just need to ensure all the dependencies are properly getting imported and exported.
+
+5. Creating webpack config
+
+   In order to specify the config file for webpack, it can be passed as an argument with `--config file_name.js` along with `webpack` command in scripts. The config can be used to override the default configs.
