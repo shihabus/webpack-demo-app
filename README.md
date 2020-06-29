@@ -42,9 +42,21 @@
 
    Plugins are options that we can use to customise the webpack build process. For example we can use plugins for code minifying, cleaning redundant files, adding tags to html, tec.
 
-   ### html-webpack-plugin
+   #### [html-webpack-plugin](https://webpack.js.org/plugins/html-webpack-plugin/)
 
    The plugin will generate an HTML5 file for you that includes all your webpack bundles in the body using script tags. If required we can provide template the generated html. This plugin is really helpful we are cache busting. **If we are using react or something similar we need to use this custom template, because we need to mention the div id to which react will be injected**
+
+   #### [clean-webpack-plugin](https://webpack.js.org/guides/output-management/#cleaning-up-the-dist-folder)
+
+   If we are caching files, with each build a lot of unused and redundant files make end up in your build folder. This plugin can be used to clear this unwanted files.
+
+   #### [html-loader](https://webpack.js.org/loaders/html-loader/)
+
+   This will convert the HTML into string. This helps in finding and replacing tags, if required.
+
+   #### [file-loader](https://webpack.js.org/loaders/file-loader/)
+
+   The file-loader resolves import/require() on a file into a url and emits the file into the output directory.
 
 8. Split webpack configs
 
