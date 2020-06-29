@@ -24,3 +24,12 @@
 5. Creating webpack config
 
    In order to specify the config file for webpack, it can be passed as an argument with `--config file_name.js` along with `webpack` command in scripts. The config can be used to override the default configs.
+
+6. Adding webpack loaders
+
+   Different file types are to be handled differently. In order to instruct the webpack about this file type specific handling we make use of loaders. In order handle _.css_ files, we make use of:
+
+   1. style-loader: Which inject css into DOM's `<style>` tag.
+   2. css-loader: Convert the CSS into JS.
+
+   In order to load the loaders, the order actually matters. For that we make use of the `use` array in webpack config. **The loaders are loaded in the reverse as they appear in the use array.**
