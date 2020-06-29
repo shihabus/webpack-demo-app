@@ -1,6 +1,12 @@
 const path = require("path");
 const merge = require("webpack-merge");
+
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const common = require("./webpack.common");
 
 module.exports = merge(common, {
@@ -16,5 +22,35 @@ module.exports = merge(common, {
     filename: "[name].[contentHash].bundle.js", // default: main.js
     path: path.resolve(__dirname, "build"), // default: dist
   },
-  plugins: [new CleanWebpackPlugin()],
+  optimization: {
+    minimizer: [new OptimizeCssAssetsPlugin(), new TerserPlugin()],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].[contentHash].css",
+    }),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./src/template.html", // custom template
+      minify: {
+        // to minify html
+        removeAttributeQuotes: true,
+        collapseWhiteSpace: true,
+        removeComments: true,
+      },
+    }),
+  ],
+  module: {
+    rules: [
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 3. extract to separate css files
+          "css-loader", // 2. css into common js
+          "sass-loader", // 1. Turn sass into css
+        ],
+      },
+    ],
+  },
 });

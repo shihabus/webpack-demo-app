@@ -78,3 +78,9 @@
     ```
 
     we can create a separate js bundle for all the third-party dependencies. Now we need to maintain a `vendor.js` file, which imports all the dependencies there. If the dependencies have, other dependencies, make sure you install them. Their bundling would be handled by webpack accordingly.
+
+11. Extract and Minify css
+
+    It is always better to load css via link tag. By default, webpack adds the css into the JS bundle, and it is the JS bundle which will load the CSS. So there might be a split second when the user would be able to see un-styled content on the screen as the DOM was painted before CSS was applied. This can be prevent by adding the CSS via a link tag, on top of the html.
+
+    There is plugin called [mini-css-extract-plugin](https://webpack.js.org/plugins/mini-css-extract-plugin/) which will help us in extracting the CSS. **If this plugin is being used, we need to make sure we use `MiniCssExtractPlugin.loader` instead of `style-loader`**. So mostly this only need to be added to the production Webpack config.
