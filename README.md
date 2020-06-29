@@ -33,3 +33,15 @@
    2. css-loader: Convert the CSS into JS.
 
    In order to load the loaders, the order actually matters. For that we make use of the `use` array in webpack config. **The loaders are loaded in the reverse as they appear in the use array.**
+
+7. Cache busting and plugins
+
+   Cache busting solves the browser caching issue by using a unique file version identifier to tell the browser that a new version of the file is available. Therefore the browser doesn't retrieve the old file from cache but rather makes a request to the origin server for the new file. We can use the `contentHash` in the file name to cache bust. Suppose if we have a main.js file with hash of content, in its filename, it will be hard to import via the script tag in `index.html`. So we need to use plugins to directly inject the files to html via JS.
+
+   ### plugins
+
+   Plugins are options that we can use to customise the webpack build process. For example we can use plugins for code minifying, cleaning redundant files, adding tags to html, tec.
+
+   ### html-webpack-plugin
+
+   The plugin will generate an HTML5 file for you that includes all your webpack bundles in the body using script tags. If required we can provide template the generated html. This plugin is really helpful we are cache busting. **If we are using react or something similar we need to use this custom template, because we need to mention the div id to which react will be injected**
