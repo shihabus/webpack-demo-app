@@ -45,3 +45,11 @@
    ### html-webpack-plugin
 
    The plugin will generate an HTML5 file for you that includes all your webpack bundles in the body using script tags. If required we can provide template the generated html. This plugin is really helpful we are cache busting. **If we are using react or something similar we need to use this custom template, because we need to mention the div id to which react will be injected**
+
+8. Split webpack configs
+
+   If required we can have different configs in development and production for webpack. The best practise is to use a common config and merge it with the specific changes. For this we make use of `webpack-merge` lib.
+
+9. Webpack-dev-server
+
+   It will really hard to rebuild when we change something in code. Webpack provides a hot-reload enabled server. When a file changes it is automatically re-build. When using the server, the build file is only created in **memory**. We can use `--open` flag to open a new window when the server starts, along with webpack config flag in the `webpack-dev-server` command.
