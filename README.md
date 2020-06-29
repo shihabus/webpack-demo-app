@@ -65,3 +65,16 @@
 9. Webpack-dev-server
 
    It will really hard to rebuild when we change something in code. Webpack provides a hot-reload enabled server. When a file changes it is automatically re-build. When using the server, the build file is only created in **memory**. We can use `--open` flag to open a new window when the server starts, along with webpack config flag in the `webpack-dev-server` command.
+
+10. Separating vendor code
+
+    When plan to cache things in server, it is always helpful to separate out the most often changing code and least changing code. Usually the lib or third-party codes are least changed and your custom code changes most often. If we can differentiate, we can apply the caching strategies much more efficient. With default config, webpack creates a common bundle for all the js codes. By adding
+
+    ```javascript
+    entry: {
+       main:"....",
+       vendor:"..."
+    }
+    ```
+
+    we can create a separate js bundle for all the third-party dependencies. Now we need to maintain a `vendor.js` file, which imports all the dependencies there. If the dependencies have, other dependencies, make sure you install them. Their bundling would be handled by webpack accordingly.

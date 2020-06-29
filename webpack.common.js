@@ -4,7 +4,10 @@ const { O_DIRECTORY } = require("constants");
 
 module.exports = {
   // devtool: "none", // stop putting eval
-  entry: "./src/index.js", // default: src/index.js
+  entry: {
+    main: "./src/index.js", // default: src/index.js
+    vendor: "./src/vendor.js",
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html", // custom template

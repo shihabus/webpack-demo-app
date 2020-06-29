@@ -13,7 +13,7 @@ module.exports = merge(common, {
     // so if content changes the md5-hash also changes
     // so to cache bust we can use this content hash in filename,
     // which prevents the browser loading stale old files
-    filename: "main.[contentHash].js", // default: main.js
+    filename: "[name].[contentHash].bundle.js", // default: main.js
     path: path.resolve(__dirname, "build"), // default: dist
   },
   plugins: [new CleanWebpackPlugin()],
